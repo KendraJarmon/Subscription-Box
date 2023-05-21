@@ -19,7 +19,7 @@ load_dotenv()
 # Creates instances of additional libraries
 bcrypt = Bcrypt()
 jwt= JWTManager()
-cors = CORS()
+
 migrate = Migrate()
 
 def create_app():
@@ -28,7 +28,7 @@ def create_app():
     """
     # Creates app instance
     app = Flask(__name__)
-
+    cors = CORS(app, resources={r' /api/*':{'origins':'*'}})
     # Loads config properties from .env file
     app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('SQLALCHEMY_DATABASE_URI')
     app.config['JWT_SECRET_KEY'] = environ.get('JWT_SECRET_KEY')
