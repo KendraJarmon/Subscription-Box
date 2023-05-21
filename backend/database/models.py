@@ -20,14 +20,30 @@ class User(db.Model):
     def __repr__(self):
         return self.username
 
-class Car(db.Model):
+
+
+# TODO: Add your models below, remember to add a new migration and upgrade database
+
+class Subscription(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    make = db.Column(db.String(255), nullable=False)
-    model = db.Column(db.String(255), nullable=False)
-    year = db.Column(db.Integer)
+    subscription_type = db.Column(db.String(255), nullable=False)
+    family_size = db.Column(db.Integer)
+    meals_per_week = db.Column(db.Integer)
+    price = db.Column(db.Integer)
     # Adds user_id as an Integer column on the car table which references the id column on user table
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     # Establishes object relation between car-user so we can grab values like car.user.username
     user = db.relationship("User")
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'))
+    product = db.relationship('Product')
 
-# TODO: Add your models below, remember to add a new migration and upgrade database
+class Product(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    product_name = db.Column(db.String(255), nullable=False)
+    price = db.Column(db.Integer)
+    
+class Survey(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    like = db.Column(db.String(255), nullable=False)
+    dilike = db.Column(db.String(255), nullable=False)
+    content_results =db.Column(db.String(255), nullable=False)

@@ -1,6 +1,6 @@
 from flask_marshmallow import Marshmallow
 from marshmallow import post_load, fields
-from database.models import User, Car
+from database.models import User, Subscription, Product, Survey
 
 ma = Marshmallow()
 
@@ -39,23 +39,51 @@ user_schema = UserSchema()
 users_schema = UserSchema(many=True)
 
 
-# Car Schemas
-class CarSchema(ma.Schema):
+# TODO: Add your schemas below
+class ProductSchema(ma.Schema):
     id = fields.Integer(primary_key=True)
-    make = fields.String(required=True)
-    model = fields.String(required=True)
-    year = fields.Integer()
+    product_name = fields.String(required=True)
+    price = fields.Integer()
+    class Meta:
+         fields = ('id', 'name', 'price')
+
+    @post_load
+    def create_product(self, data, **kwargs):
+        return Product(**data)
+    
+product_schema = ProductSchema()
+products_schema = ProductSchema(many=True)
+
+class SurveySchema(ma.Schema):
+    id = fields.Integer(primary_key=True)
+    like = fields.String(required=True)
+    dislike = fields.String(required=True)
+    content_results = fields.String(required=True)
+    class Meta:
+        fields = ('id', 'like', 'dislike', 'content_results')
+
+    @post_load
+    def create_survey(self, data, **kwargs):
+        return Survey(**data)
+
+survey_schema = SurveySchema()
+
+class SubscriptionSchema(ma.Schema):
+    id = fields.Integer(primary_key=True)
+    Subscription_type = fields.Integer(required=True)
+    family_size = fields.Integer(required=True)
+    meals_per_week = fields.Integer()
+    price = fields.Integer()
     user_id = fields.Integer()
     user = ma.Nested(UserSchema, many=False)
+    product_id = fields.String(required=True)
+    product = ma.Nested(ProductSchema, many=False)
     class Meta:
-        fields = ("id", "make", "model", "year", "user_id", "user")
+        fields = ("id", "type", "family_size", "price", "user_id", "user", "product_id", "product")
     
     @post_load
-    def create_car(self, data, **kwargs):
-        return Car(**data)
+    def create_subscription(self, data, **kwargs):
+        return Subscription(**data)
 
-car_schema = CarSchema()
-cars_schema = CarSchema(many=True)
-
-
-# TODO: Add your schemas below
+subscription_schema = SubscriptionSchema()
+subscriptions_schema = SubscriptionSchema(many=True)
