@@ -11,7 +11,7 @@ const AddSurveyPage = async (props) => {
     const [formData, handleInputChange] = useCustomForm()
 
     async function postProduct(){
-       try {
+       try { 
             let response =  await axios.post("http://127.0.0.1:5000/api/user_product", {
                 headers: {
                   Authorization: "Bearer " + token,   
@@ -19,12 +19,10 @@ const AddSurveyPage = async (props) => {
             })
             navigate(response.data)
        } catch (error) {
-           console(error.response.data)
        }
 
     }
 
-postProduct()
 
 return (
     <div>
@@ -34,7 +32,7 @@ return (
         <form
             id="form">
                 <label> 
-                <label htmlFor="meat">Choose your Meat:</label><select name="meat" id="meat" value={formData.subscription_type}
+                <label htmlFor="meat">Choose your Meat:</label><select name="meat" id="meat" value={formData.meat}
                         onChange={handleInputChange}>
                         <option value="no meat">NO MEAT</option>
                         <option value="meat lover">Meat Lover</option>
@@ -44,7 +42,7 @@ return (
                     </select>
                 </label>
                 <label>  
-                <label htmlFor="veggies">Choose your Veggie:</label><select name="veggies" id="veggies" value={formData.subscription_type}
+                <label htmlFor="veggies">Choose your Veggie:</label><select name="veggies" id="veggies" value={formData.veggie}
                         onChange={handleInputChange}>
                         <option value="no veggies">NO VEGGIES</option>
                         <option value="the green ones">The Green Ones</option>
@@ -54,7 +52,7 @@ return (
                     </select>
                 </label>
                 <label>  
-                <label htmlFor="sides">Choose your Sidees:</label><select name="sides" id="sides" value={formData.subscription_type}
+                <label htmlFor="sides">Choose your Sidees:</label><select name="sides" id="sides" value={formData.sides}
                         onChange={handleInputChange}>
                         <option value="white rice">White Rice</option>
                         <option value="brown rice">Brown Rice</option>
@@ -66,7 +64,7 @@ return (
                     </select>
                 </label>
                 <label>  
-                <label htmlFor="breads">Choose your Breads:</label><select name="breads" id="breads" value={formData.subscription_type}
+                <label htmlFor="breads">Choose your Breads:</label><select name="breads" id="breads" value={formData.breads}
                         onChange={handleInputChange}>
                         <option value="white bread">White Bread</option>
                         <option value="wheat bread">Wheat Rice</option>
@@ -77,7 +75,7 @@ return (
                     </select>
                 </label>
                 <label>
-                <label htmlFor="life style">Choose your life style:</label><select name="life style" id="life style" value={formData.subscription_type}
+                <label htmlFor="life style">Choose your life style:</label><select name="life style" id="life style" value={formData.life_style}
                         onChange={handleInputChange}>
                         <option value="keto">Keto</option>
                         <option value="plant based">Plant Based</option>
@@ -88,7 +86,7 @@ return (
                     </select>
                 </label>
                 <label>
-                <label htmlFor="goals">What are your goals?:</label><select name="goals" id="goals" value={formData.subscription_type}
+                <label htmlFor="goals">What are your goals?:</label><select name="goals" id="goals" value={formData.goals}
                         onChange={handleInputChange}>
                         <option value="save money">Save Money</option>
                         <option value="spice up your palet">Spice up your palet</option>
@@ -102,4 +100,4 @@ return (
 )
 }
 
-export default AddSurveyPage
+export default AddSurveyPage;

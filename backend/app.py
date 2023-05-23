@@ -28,7 +28,8 @@ def create_app():
     """
     # Creates app instance
     app = Flask(__name__)
-    cors = CORS(app, resources={r' /api/*':{'origins':'*'}})
+    cors = CORS(app, resources={r"/*": {"origins": "*", "allow_headers": "*", "expose_headers": "*",}}); support_credentials = True
+
     # Loads config properties from .env file
     app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('SQLALCHEMY_DATABASE_URI')
     app.config['JWT_SECRET_KEY'] = environ.get('JWT_SECRET_KEY')

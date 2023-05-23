@@ -10,12 +10,12 @@ const HomePage = () => {
   // The "token" value is the JWT token that you will send in the header of any request requiring authentication
   //TODO: Add an AddCars Page to add a car for a logged in user's garage
   const [user, token] = useAuth();
-  const [Subscription, setSubscriptions] = useState([]);
+  const [subscription, setSubscriptions] = useState([]);
 
   useEffect(() => {
     const fetchSubscriptions = async () => {
       try {
-        let response = await axios.get("http://127.0.0.1:5000/api/user_subscriptions", {
+        let response = await axios.get("http://127.0.0.1:5000/api/user_subscription", {
           headers: {
             Authorization: "Bearer " + token,
           },
@@ -31,11 +31,11 @@ const HomePage = () => {
     <div className="container">
       {console.log(user)}
       <h1>Home Page for {user.username}!</h1>
-      <Link to="/add">
+      <Link to="/addsurvey">
         <p>Click to add Subscription</p>
       </Link>
-      {Subscription &&
-        Subscription.map((subscription) => (
+      {subscription &&
+        ((subscription) => (
           <p key={subscription.id}>
             {subscription.type} {subscription.family_size} {subscription.price} {subscription.user_id} {subscription.user} {subscription.product_id} {subscription.product}
           </p>

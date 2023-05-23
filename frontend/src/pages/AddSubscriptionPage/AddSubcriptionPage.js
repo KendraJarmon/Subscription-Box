@@ -68,4 +68,4 @@ postSubscription()
     )
 }
 
-export default AddSubscriptionPage
+export default AddSubscriptionPage;

@@ -59,4 +59,4 @@ const AddProductPage = (props) => {
     )
 }
 
-export default AddProductPage
+export default AddProductPage;
