@@ -15,7 +15,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchSubscriptions = async () => {
       try {
-        let response = await axios.get("http://127.0.0.1:5000/api/user_subscription", {
+        let response = await axios.get("http://127.0.0.1:5000/api/user_survey", {
           headers: {
             Authorization: "Bearer " + token,
           },
@@ -43,5 +43,6 @@ const HomePage = () => {
     </div>
   );
 };
+
 
 export default HomePage;

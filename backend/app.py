@@ -59,7 +59,7 @@ def create_routes():
     api.add_resource(AllSubscriptionResource, '/api/subscription')
     api.add_resource(UserSubscriptionResource, '/api/user_subscription')
     api.add_resource(UserProductResource, '/api/user_product')
-    api.add_resource(UserSurveyResource, '/api/User_survey')
+    api.add_resource(UserSurveyResource, '/api/user_survey')
     # TODO: Create files for your Resources in resources folder, add them here
     
     return api

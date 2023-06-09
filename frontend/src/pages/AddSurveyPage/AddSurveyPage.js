@@ -4,31 +4,37 @@ import axios from "axios";
 
 import useAuth from "../../hooks/useAuth";
 import useCustomForm from "../../hooks/useCustomForm";
+import { useEffect } from "react";
 
-const AddSurveyPage = async (props) => {
-    const [token] = useAuth();
+
+const AddSurveyPage = (props) => {
+    const [user, token] = useAuth();
     const navigate = useNavigate();
     const [formData, handleInputChange] = useCustomForm()
 
-    async function postProduct(){
-       try { 
-            let response =  await axios.post("http://127.0.0.1:5000/api/user_product", {
-                headers: {
-                  Authorization: "Bearer " + token,   
-                },
-            })
-            navigate(response.data)
-       } catch (error) {
-       }
-
+    useEffect(() => {
+        const fetchSubscriptions = async () => {
+            try { 
+                    let response =  await axios.get("http://127.0.0.1:5000/api/user_product", {
+                        headers: {
+                          Authorization: "Bearer " + token,   
+                        },
+                    });
+                    fetchSubscriptions(response.data);
+            } catch (error) {
+              console.log(error.response.data);
     }
+  };
+    fetchSubscriptions();
+}, [token]);
 
-
-return (
-    <div>
+  return (
+    <div className="box">
+        {console.log(user)}
         <h1 id="title">The Goodies</h1>
+        <hr></hr>
         <p id="description">What whould you like to recieve in your subscription box?</p>
-
+        <hr></hr>
         <form
             id="form">
                 <label> 
@@ -95,9 +101,16 @@ return (
                         <option value="just trying it out">Just trying it out</option>
                     </select>
                 </label>
+                <div className="submit">
+                    <body>
+                        <h2>If you're all done hit submit</h2>
+                        <button class="button"><span>Submit </span></button>
+                    </body>
+                </div>
         </form>
     </div>
 )
-}
+  };
+
 
 export default AddSurveyPage;

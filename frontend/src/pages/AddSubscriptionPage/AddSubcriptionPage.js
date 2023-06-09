@@ -11,7 +11,7 @@ const defaultValues = {
     "family_size": ""
 }
 
-const AddSubscriptionPage = async (props) => {
+const AddSubscriptionPage =  (props) => {
 
     const [token] = useAuth();
     const navigate = useNavigate();

@@ -11,8 +11,8 @@ const Navbar = () => {
     <div className="navBar">
       <ul>
         <li className="brand">
-          <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-            <b>React/Flask JWT</b>
+          <Link to="/" style={{ textDecoration: "underline", color: "orchid" }}>
+            <b>Home Good Eating</b>
           </Link>
         </li>
         <li>
